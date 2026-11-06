@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SiagaAsap — Pantau Udara, Lindungi Kesehatan</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a href="#beranda" class="brand"><span class="lg">☁️</span>Siaga<b>Asap</b></a>
+  <nav class="tabs" id="tabs">
+    <a href="#beranda" data-v="beranda">Beranda</a><a href="#edukasi" data-v="edukasi">Edukasi</a><a href="#gejala" data-v="gejala">Gejala</a><a href="#faskes" data-v="faskes">Faskes</a>
+  </nav>
+  <div class="top-r">
+    <select id="city" aria-label="Pilih wilayah"></select>
+    <a class="sos" href="tel:119">🚑 Darurat 119</a>
+  </div>
+</header>
+
+<main>
+<!-- BERANDA -->
+<section class="view" id="v-beranda">
+  <div class="demo">⚠️ <b>Data contoh (demonstrasi).</b> Belum terhubung ke sumber resmi seperti BMKG atau KLHK. Jangan dipakai untuk keputusan nyata.</div>
+  <div class="alert-b" id="warn" hidden></div>
+  <div class="grid-h">
+    <article class="aqi" id="aqiCard">
+      <i class="smoke s1"></i><i class="smoke s2"></i><i class="smoke s3"></i>
+      <div class="aqi-h"><span>📍 <b id="cName"></b></span><button class="ghost" id="refresh" aria-label="Segarkan data">⟳ Segarkan</button></div>
+      <div class="gauge">
+        <svg viewBox="0 0 240 140"><path class="trk" d="M20 120A100 100 0 0 1 220 120"/><path class="val" id="arc" d="M20 120A100 100 0 0 1 220 120"/></svg>
+        <div class="gv"><small>AQI</small><b id="aqiN">0</b><span id="aqiS" class="st"></span></div>
+      </div>
+      <p class="upd">Terakhir diperbarui: <b id="upd"></b> · <em>data contoh</em></p>
+    </article>
+    <div class="col">
+      <article class="card"><h3>Kualitas udara</h3>
+        <div class="pm"><span>PM2.5</span><div class="bar"><i id="b25"></i></div><b id="p25"></b></div>
+        <div class="pm"><span>PM10</span><div class="bar"><i id="b10"></i></div><b id="p10"></b></div>
+        <div class="trend" id="trend" title="Tren 12 jam (contoh)"></div><small class="mut">Tren 12 jam terakhir (contoh)</small>
+      </article>
+      <article class="card"><h3>Saran kesehatan</h3><ul class="adv" id="adv"></ul>
+        <label class="sw"><input type="checkbox" id="rem"><i></i><span>Pengingat kualitas udara</span></label>
+      </article>
+    </div>
+  </div>
+  <h3 class="sub">Alur penggunaan</h3>
+  <div class="flow">
+    <div><b>1</b><span>Buka aplikasi</span><small>Masuk ke beranda</small></div>
+    <div><b>2</b><span>Cek kualitas udara</span><small>Lihat AQI dan saran</small></div>
+    <div><b>3</b><span>Pilih menu</span><small>Edukasi, gejala, faskes</small></div>
+    <div><b>4</b><span>Dapatkan informasi</span><small>Lakukan pencegahan</small></div>
+  </div>
+</section>
+
+<!-- EDUKASI -->
+<section class="view" id="v-edukasi">
+  <div class="head"><h2>Edukasi kesehatan</h2><p>Panduan sederhana mengurangi paparan asap.</p></div>
+  <div class="bar-f"><input id="q" type="search" placeholder="🔎 Cari panduan…"><div class="chips" id="eduC"></div></div>
+  <div class="edu" id="edu"></div>
+  <article class="card steps"><h3>5 langkah saat kabut asap</h3><ol><li>Kurangi kegiatan luar ruangan.</li><li>Tutup pintu dan jendela saat asap pekat.</li><li>Hindari membakar sampah.</li><li>Ikuti informasi resmi setempat.</li><li>Cari bantuan jika sesak berat.</li></ol></article>
+</section>
+
+<!-- GEJALA -->
+<section class="view" id="v-gejala">
+  <div class="head"><h2>Catat gejala</h2><p>Catatan pribadi di perangkatmu, <b>bukan diagnosis</b>.</p></div>
+  <div class="grid2">
+    <form class="card" id="gForm">
+      <label for="gd">Tanggal</label><input type="date" id="gd" required>
+      <label>Keluhan yang dirasakan</label><div class="sym" id="sym"></div>
+      <input id="other" placeholder="Keluhan lain (opsional)" hidden>
+      <label for="gn">Catatan tambahan</label><textarea id="gn" rows="3" placeholder="Misal: memburuk setelah keluar rumah"></textarea>
+      <div class="alert-b red" id="sos2" hidden>🚨 <b>Sesak napas bisa serius.</b> Segera cari bantuan medis atau hubungi layanan darurat setempat. <a href="tel:119">Telepon 119</a></div>
+      <button class="btn" type="submit">Simpan catatan</button>
+      <p class="mut">Tidak perlu nama atau NIK. Data hanya tersimpan di browser ini.</p>
+    </form>
+    <div class="card"><div class="rh"><h3>Riwayat</h3><button class="ghost" id="clr">Hapus semua</button></div><div id="sum" class="sumr"></div><ul class="hist" id="hist"></ul></div>
+  </div>
+</section>
+
+<!-- FASKES -->
+<section class="view" id="v-faskes">
+  <div class="head"><h2>Fasilitas kesehatan</h2><p>Cari puskesmas, rumah sakit, atau klinik di wilayahmu.</p></div>
+  <div class="bar-f"><input id="area" placeholder="📍 Masukkan kota / kecamatan"><div class="chips" id="fC"></div></div>
+  <div class="demo">Daftar di bawah adalah <b>contoh</b> dan belum terverifikasi. Konfirmasi jam layanan sebelum datang.</div>
+  <div class="fas" id="fas"></div>
+  <a class="btn" id="maps" target="_blank" rel="noopener">Cari di Google Maps ↗</a>
+</section>
+</main>
+
+<nav class="bnav" id="bnav">
+  <a href="#beranda" data-v="beranda">🏠<span>Beranda</span></a><a href="#edukasi" data-v="edukasi">📖<span>Edukasi</span></a><a href="#gejala" data-v="gejala">📋<span>Gejala</span></a><a href="#faskes" data-v="faskes">📍<span>Faskes</span></a>
+</nav>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
